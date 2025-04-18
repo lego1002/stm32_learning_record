@@ -1,0 +1,10 @@
+00:14:45 **** Incremental Build of configuration Debug for project bluepill_blink ****
+make -j16 all 
+arm-none-eabi-size  bluepill_blink.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4552	     12	   1572	   6136	   17f8	bluepill_blink.elf
+Finished building: default.size.stdout
+ 
+
+00:14:45 Build Finished. 0 errors, 0 warnings. (took 402ms)
+

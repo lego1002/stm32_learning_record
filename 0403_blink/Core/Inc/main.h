@@ -69,6 +69,8 @@ void Error_Handler(void);
 #define fuckyouLED_GPIO_Port GPIOA
 #define my_led_Pin GPIO_PIN_8
 #define my_led_GPIO_Port GPIOA
+#define D8_Pin GPIO_PIN_9
+#define D8_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14

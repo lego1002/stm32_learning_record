@@ -66,14 +66,13 @@ static void MX_USART2_UART_Init(void);
 int main(void)
 {
 
-	/* USER CODE BEGIN 1 */
+  /* USER CODE BEGIN 1 */
 	uint32_t last_toggle_led1 = 0;
 	uint32_t last_toggle_led2 = 0;
 
 	uint32_t interval_led1 = 300;  // fuckyouLED 每 300ms 切一次
 	uint32_t interval_led2 = 700;  // my_led 每 700ms 切一次
-	/* USER CODE END 1 */
-
+  /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -116,17 +115,13 @@ int main(void)
           last_toggle_led2 = now;
       }
 
-      /* USER CODE END WHILE */
-      /* USER CODE BEGIN 3 */
+
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
-
-
-      /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
-
-  /* USER CODE END 3 */
+}
 
 /**
   * @brief System Clock Configuration
@@ -226,7 +221,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, fuckyouLED_Pin|my_led_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, fuckyouLED_Pin|my_led_Pin|D8_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -240,8 +235,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(blue_button_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : fuckyouLED_Pin my_led_Pin */
-  GPIO_InitStruct.Pin = fuckyouLED_Pin|my_led_Pin;
+  /*Configure GPIO pins : fuckyouLED_Pin my_led_Pin D8_Pin */
+  GPIO_InitStruct.Pin = fuckyouLED_Pin|my_led_Pin|D8_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

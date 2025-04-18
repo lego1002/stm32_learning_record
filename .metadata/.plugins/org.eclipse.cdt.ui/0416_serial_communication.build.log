@@ -1,0 +1,17 @@
+22:09:14 **** Incremental Build of configuration Debug for project 0416_serial_communication ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L432xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "0416_serial_communication.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\ASUS\Desktop\stm_ws\0416_serial_communication\STM32L432KCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="0416_serial_communication.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 0416_serial_communication.elf
+ 
+arm-none-eabi-size  0416_serial_communication.elf 
+arm-none-eabi-objdump -h -S 0416_serial_communication.elf  > "0416_serial_communication.list"
+   text	   data	    bss	    dec	    hex	filename
+  16108	     12	   1916	  18036	   4674	0416_serial_communication.elf
+Finished building: default.size.stdout
+ 
+Finished building: 0416_serial_communication.list
+ 
+
+22:09:15 Build Finished. 0 errors, 0 warnings. (took 1s.766ms)
+

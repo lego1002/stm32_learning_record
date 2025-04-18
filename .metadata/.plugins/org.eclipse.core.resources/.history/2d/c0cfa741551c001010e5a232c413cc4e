@@ -1,0 +1,50 @@
+#include "main.h"
+#include <string.h>
+#include <stdio.h>
+
+UART_HandleTypeDef huart2;
+uint8_t from_computer;
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_USART2_UART_Init(void);
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+    if (huart->Instance == USART2) {
+        char msg[32];
+
+        if (from_computer == 'y') {
+            HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_3); // yellow
+            snprintf(msg, sizeof(msg), "Toggle YELLOW LED\r\n");
+        } else if (from_computer == 'b') {
+            HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_4); // blue
+            snprintf(msg, sizeof(msg), "Toggle BLUE LED\r\n");
+        } else if (from_computer == 'r') {
+            snprintf(msg, sizeof(msg), "System Ready.\r\n");
+        } else {
+            snprintf(msg, sizeof(msg), "Received: %c\r\n", from_computer);
+        }
+
+        HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 100);
+        HAL_UART_Receive_IT(&huart2, &from_computer, 1); // re-enable
+    }
+}
+
+int main(void)
+{
+    HAL_Init();
+    SystemClock_Config();
+    MX_GPIO_Init();
+    MX_USART2_UART_Init();
+
+    // welcome message
+    char hello[] = "System Ready.\r\n";
+    HAL_UART_Transmit(&huart2, (uint8_t*)hello, strlen(hello), 100);
+
+    // start receiving
+    HAL_UART_Receive_IT(&huart2, &from_computer, 1);
+
+    while (1) {
+        HAL_Delay(10); // 主迴圈沒做事，處理都交給中斷
+    }
+}
